@@ -1,0 +1,157 @@
+.lamp {
+  height: var(--space-2xl);
+  fill: currentColor;
+  color: rgb(var(--color-text));
+  transition: transform 0.2s ease;
+  align-self: flex-end;
+}
+
+.lamp:hover {
+  transform-origin: center;
+  transform: scale(1.05);
+}
+
+.lamp .shade {
+  stroke: currentColor;
+}
+
+.lamp.unlit .shade {
+  fill: rgba(0, 0, 0, 0);
+}
+
+.lamp.lit .shade {
+  fill: currentColor;
+}
+
+.lamp.unlit .string {
+  transform: translateY(0px);
+  animation: stringBounce 1s infinite;
+}
+
+.lamp.lit .string {
+  transform: translateY(1px);
+  animation: stringBounce 1s infinite;
+}
+
+@keyframes stringBounce {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.lamp.unlit:hover .string {
+  transform: translateY(0.7px);
+  animation: none;
+}
+
+.lamp.lit:hover .string {
+  transform: translateY(1.3px);
+  animation: none;
+}
+
+.glow {
+  stroke: yellow;
+  transition: opacity 0.2s ease;
+}
+
+.lamp.unlit .glow {
+  opacity: 0;
+}
+
+.lamp.lit .glow {
+  opacity: 1;
+  animation: blink 4s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  5% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  94% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(0.7px, 0.5px);
+  }
+  100% {
+    transform: translate(1px, 1px);
+  }
+}
+
+.lamp.lit .leftGlow {
+  animation: leftGlow 1s infinite;
+}
+
+@keyframes leftGlow {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-0.8px, -0.6px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.lamp.lit .middleGlow {
+  animation: middleGlow 1s infinite;
+}
+
+@keyframes middleGlow {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0, -1px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.lamp.lit .rightGlow {
+  animation: rightGlow 1s infinite;
+}
+
+@keyframes rightGlow {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0.84px, -0.54px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}

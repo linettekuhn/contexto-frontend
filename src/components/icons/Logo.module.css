@@ -1,0 +1,16 @@
+.logo {
+  fill: currentColor;
+}
+
+.text {
+  fill: currentColor;
+}
+
+.globe {
+  stroke: currentColor;
+  fill: none;
+}
+
+.stand {
+  fill: currentColor;
+}

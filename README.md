@@ -71,3 +71,41 @@ export default defineConfig([
   },
 ])
 ```
+
+```
+contexto-frontend
+├─ eslint.config.js
+├─ index.html
+├─ package-lock.json
+├─ package.json
+├─ public
+├─ README.md
+├─ src
+│  ├─ App.module.css
+│  ├─ App.tsx
+│  ├─ assets
+│  │  └─ logo.svg
+│  ├─ components
+│  │  ├─ Dropdown.tsx
+│  │  ├─ icons
+│  │  │  ├─ Lamp.module.css
+│  │  │  ├─ Lamp.tsx
+│  │  │  ├─ Logo.module.css
+│  │  │  └─ Logo.tsx
+│  │  ├─ Navbar.tsx
+│  │  ├─ styles
+│  │  │  ├─ Navbar.module.css
+│  │  │  ├─ TextBox.module.css
+│  │  │  ├─ TextBoxHeader.module.css
+│  │  │  └─ Translator.module.css
+│  │  ├─ TextBox.tsx
+│  │  ├─ TextBoxHeader.tsx
+│  │  └─ Translator.tsx
+│  ├─ index.css
+│  └─ main.tsx
+├─ tsconfig.app.json
+├─ tsconfig.json
+├─ tsconfig.node.json
+└─ vite.config.ts
+
+```

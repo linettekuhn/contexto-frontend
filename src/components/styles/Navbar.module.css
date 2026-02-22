@@ -1,18 +1,17 @@
 /* Nav element */
 nav {
-  height: 255px;
+  height: 200px;
   width: 100vw;
   position: fixed;
-  background: linear-gradient(
-    0deg,
-    rgba(var(--color-primary-100), 0) 0%,
-    rgb(var(--color-primary-300)) 60%
-  );
+  display: flex;
+  justify-content: center;
+  align-items: start;
   z-index: 2;
 }
 
 .navBar {
   z-index: 99;
+  pointer-events: all;
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -21,6 +20,7 @@ nav {
   gap: var(--space-2xs);
   padding: var(--space-m) var(--space-4xl);
   background-color: rgb(var(--color-primary-300));
+  max-width: 1200px;
 }
 
 nav * {
@@ -31,4 +31,10 @@ nav * {
 
 .logo {
   width: 200px;
+}
+
+@media (min-width: 650px) {
+  nav {
+    height: 255px;
+  }
 }

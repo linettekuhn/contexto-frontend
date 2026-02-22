@@ -5,6 +5,7 @@ import Translator from "./components/Translator";
 function App() {
   return (
     <>
+      <div className="navGradient" />
       <Navbar />
       <main className={styles.main}>
         <div className={styles.header}>

@@ -3,7 +3,7 @@
   fill: currentColor;
   color: rgb(var(--color-text));
   transition: transform 0.2s ease;
-  align-self: flex-end;
+  align-self: flex-start;
 }
 
 .lamp:hover {

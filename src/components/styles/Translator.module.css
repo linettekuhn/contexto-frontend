@@ -1,0 +1,17 @@
+.translator {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-shadow: 0 0 8px rgba(var(--color-primary-900), 0.5);
+  border-radius: var(--space-xs) var(--space-xs) var(--space-2xs)
+    var(--space-2xs);
+}
+
+@media (min-width: 500px) {
+  .translator {
+    flex-direction: row;
+    min-width: 400px;
+    max-width: 1200px;
+    width: auto;
+  }
+}

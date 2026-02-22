@@ -1,5 +1,6 @@
 import styles from "./App.module.css";
 import Navbar from "./components/Navbar";
+import Translator from "./components/Translator";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
             Instant translations adapted to real dialects and everyday speech.
           </h4>
         </div>
+        <Translator />
       </main>
     </>
   );

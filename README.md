@@ -1,111 +1,48 @@
-# React + TypeScript + Vite
+# Contexto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Contexto is an AI dialect-aware translation web app built with React, TypeScript, and Vite, featuring real-time AI translations, regional dialect selection, tone control, and a responsive animated UI.
 
-Currently, two official plugins are available:
+It allows users to translate text into authentic regional dialects using AI, with fine control over language, dialect, and tone for more natural and culturally accurate results.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Demo and Visuals
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+[👉 **Click here to see live demo**](https://contexto.linettekuhn.com)
 
-## Expanding the ESLint configuration
+<div style="display: flex; align-items: center;">
+  <img 
+    src="https://github.com/user-attachments/assets/d71a6940-ff3c-4d07-bac1-b71c14332869" 
+    height="350"
+  />
+  <img 
+    src="https://github.com/user-attachments/assets/982c78de-3104-4665-a0a8-0a0bba1de168" 
+    height="350"
+  />
+</div>
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Translate text into authentic regional dialects using AI
+- Language and dialect selection
+- Automatic or manual original language detection
+- Formality slider to adjust tone and style of translation
+- Copy to clipboard functionality
+- Toast notifications for user feedback
+- Dark and light theme toggle
+- Fully responsive design for desktop and mobile viewing
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Built With
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Frontend: React, TypeScript, Vite
+- Animations: Framer Motion, GSAP
+- Backend [managed in sister repository](https://github.com/linettekuhn/contexto-backend): Node.js, Express, TypeScript
+- Deployment: DigitalOcean VPS
+- Database: PostgreSQL
+- APIs: OpenAI API
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-```
-contexto-frontend
-├─ eslint.config.js
-├─ index.html
-├─ package-lock.json
-├─ package.json
-├─ public
-├─ README.md
-├─ src
-│  ├─ App.module.css
-│  ├─ App.tsx
-│  ├─ assets
-│  │  └─ logo.svg
-│  ├─ components
-│  │  ├─ Dropdown.tsx
-│  │  ├─ icons
-│  │  │  ├─ Lamp.module.css
-│  │  │  ├─ Lamp.tsx
-│  │  │  ├─ Logo.module.css
-│  │  │  └─ Logo.tsx
-│  │  ├─ Navbar.tsx
-│  │  ├─ styles
-│  │  │  ├─ Navbar.module.css
-│  │  │  ├─ TextBox.module.css
-│  │  │  ├─ TextBoxHeader.module.css
-│  │  │  └─ Translator.module.css
-│  │  ├─ TextBox.tsx
-│  │  ├─ TextBoxHeader.tsx
-│  │  └─ Translator.tsx
-│  ├─ index.css
-│  └─ main.tsx
-├─ tsconfig.app.json
-├─ tsconfig.json
-├─ tsconfig.node.json
-└─ vite.config.ts
-
-```
+---

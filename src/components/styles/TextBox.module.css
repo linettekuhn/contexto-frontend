@@ -17,6 +17,7 @@
   padding: var(--space-2xs);
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .textBox:focus {
@@ -29,4 +30,32 @@
 .disabled {
   background-color: rgb(var(--color-primary-disabled));
   cursor: not-allowed;
+}
+
+.copyButton {
+  position: absolute;
+  bottom: var(--space-xs);
+  right: var(--space-xs);
+  background: none;
+  border: none;
+  padding: var(--space-2xs);
+  cursor: pointer;
+  color: rgb(var(--color-primary-700));
+  opacity: 0.5;
+  transition:
+    opacity 0.15s ease,
+    color 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--space-2xs);
+}
+
+.copyButton:hover {
+  opacity: 1;
+}
+
+.copied {
+  opacity: 1;
+  color: rgb(var(--color-primary-500));
 }

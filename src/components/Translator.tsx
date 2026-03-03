@@ -14,7 +14,7 @@ export default function Translator() {
   const [sourceLanguage, setSourceLanguage] = useState("auto");
   const [targetLanguage, setTargetLanguage] = useState("es");
   const [targetDialect, setTargetDialect] = useState("dominican");
-  const [formality, setFormality] = useState(0.5);
+  const [formality, setFormality] = useState(0);
   const [translation, setTranslation] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -184,6 +184,7 @@ export default function Translator() {
             value={translation}
             placeholder="Your translated text goes here......"
             disabled={true}
+            copyable={translation ? true : false}
           />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 import styles from "./styles/Dropdown.module.css";
 import { AnimatePresence, motion } from "motion/react";
@@ -13,32 +13,20 @@ type Props = {
 
 export default function Dropdown({ value, options, onChange }: Props) {
   const [open, setOpen] = useState(false);
-  const optionsRef = useRef<HTMLDivElement>(null);
+  const [alignRight, setAlignRight] = useState(false);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   const selectedLabel =
     options.find((option) => option.value === value)?.label ?? "";
 
-  // fix options menu positioning if it sits outside window width
-  useEffect(() => {
-    if (!open || !optionsRef.current) return;
-    const options = optionsRef.current;
-    const optionsRect = optionsRef.current.getBoundingClientRect();
-
-    options.style.left = "";
-    options.style.right = "";
-
-    // fix right overflow
-    if (optionsRect.right > window.innerWidth) {
-      options.style.left = "auto";
-      options.style.right = "0";
+  const handleOpen = () => {
+    if (!open && triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      // if the trigger is in the right half of the screen, align menu to the right
+      setAlignRight(rect.left > window.innerWidth / 2);
     }
-
-    // fix left overflow
-    if (optionsRect.left < 0) {
-      options.style.left = "0";
-      options.style.right = "auto";
-    }
-  }, [open]);
+    setOpen((prev) => !prev);
+  };
 
   return (
     <div className={styles.dropdownWrapper}>
@@ -54,8 +42,9 @@ export default function Dropdown({ value, options, onChange }: Props) {
         )}
       </AnimatePresence>
       <motion.div
+        ref={triggerRef}
         className={`button ${styles.dropdown}`}
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={handleOpen}
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -71,8 +60,12 @@ export default function Dropdown({ value, options, onChange }: Props) {
       <AnimatePresence>
         {open && (
           <motion.div
-            ref={optionsRef}
             className={styles.options}
+            style={
+              alignRight
+                ? { left: "auto", right: 0 }
+                : { left: 0, right: "auto" }
+            }
             initial={{ opacity: 0, y: -6, scale: 0.5 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.5 }}

@@ -283,8 +283,8 @@ textarea:not([rows]) {
 
 [data-theme="dark"] {
   --color-primary-900: 219, 240, 238;
-  --color-primary-700: 101, 189, 180;
-  --color-primary-500: 10, 92, 84;
+  --color-primary-700: 37, 89, 84;
+  --color-primary-500: 0, 164, 147;
   --color-primary-300: 15, 61, 57;
   --color-primary-100: 9, 37, 34;
   --color-text: 214, 245, 242;

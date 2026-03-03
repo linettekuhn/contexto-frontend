@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 import styles from "./styles/Dropdown.module.css";
 
@@ -12,9 +12,32 @@ type Props = {
 
 export default function Dropdown({ value, options, onChange }: Props) {
   const [open, setOpen] = useState(false);
+  const optionsRef = useRef<HTMLDivElement>(null);
 
   const selectedLabel =
     options.find((option) => option.value === value)?.label ?? "";
+
+  // fix options menu positioning if it sits outside window width
+  useEffect(() => {
+    if (!open || !optionsRef.current) return;
+    const options = optionsRef.current;
+    const optionsRect = optionsRef.current.getBoundingClientRect();
+
+    options.style.left = "";
+    options.style.right = "";
+
+    // fix right overflow
+    if (optionsRect.right > window.innerWidth) {
+      options.style.left = "auto";
+      options.style.right = "0";
+    }
+
+    // fix left overflow
+    if (optionsRect.left < 0) {
+      options.style.left = "0";
+      options.style.right = "auto";
+    }
+  }, [open]);
 
   return (
     <div className={styles.dropdownWrapper}>
@@ -29,7 +52,7 @@ export default function Dropdown({ value, options, onChange }: Props) {
         {open ? <FaChevronUp size={14} /> : <FaChevronDown size={14} />}
       </div>
       {open && (
-        <div className={styles.options}>
+        <div ref={optionsRef} className={styles.options}>
           {options.map((item) => (
             <div
               key={item.value}

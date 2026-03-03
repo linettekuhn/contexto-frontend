@@ -34,8 +34,13 @@
 
 @media (min-width: 650px) {
   .options {
-    max-width: 400px;
-    left: 0;
-    transform: translateX(50%);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: auto;
+    max-width: none;
+  }
+
+  .options div {
+    justify-self: center;
   }
 }

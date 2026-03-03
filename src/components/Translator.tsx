@@ -6,12 +6,14 @@ import Dropdown from "./Dropdown";
 import { toast } from "react-toastify";
 import { translateText } from "../services/TranslationService";
 import type { BackendError } from "../types";
+import Slider from "./Slider";
 
 export default function Translator() {
   const [sourceText, setSourceText] = useState("");
   const [sourceLanguage, setSourceLanguage] = useState("auto");
   const [targetLanguage, setTargetLanguage] = useState("es");
   const [targetDialect, setTargetDialect] = useState("dominican");
+  const [formality, setFormality] = useState(0.5);
   const [translation, setTranslation] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -97,6 +99,7 @@ export default function Translator() {
         source_language: sourceLanguage,
         target_language: targetLanguage,
         dialect: targetDialect,
+        formality: formality,
       });
 
       setTranslation(result.translation);
@@ -132,6 +135,7 @@ export default function Translator() {
 
   return (
     <div className={styles.translatorWrapper}>
+      <Slider value={formality} onChange={setFormality} />
       <div className={styles.buttonMobile}>{translateButton}</div>
       <div className={styles.translator}>
         <div className={styles.sourceWrapper}>

@@ -7,6 +7,7 @@ export type TranslateRequest = {
   source_language: string;
   target_language: string;
   dialect: string;
+  formality: number;
 };
 
 export type TranslateResponse = {

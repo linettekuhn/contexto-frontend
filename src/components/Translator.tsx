@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { translateText } from "../services/TranslationService";
 import type { BackendError } from "../types";
 import Slider from "./Slider";
+import { motion } from "motion/react";
 
 export default function Translator() {
   const [sourceText, setSourceText] = useState("");
@@ -128,9 +129,15 @@ export default function Translator() {
   };
 
   const translateButton = (
-    <button className="button" onClick={handleTranslate}>
+    <motion.div
+      className={`button ${styles.dropdown}`}
+      onClick={handleTranslate}
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    >
       Translate
-    </button>
+    </motion.div>
   );
 
   return (

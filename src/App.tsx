@@ -16,6 +16,9 @@ function App() {
           </h4>
         </div>
         <Translator />
+        <p className="caption" style={{ opacity: 0.5 }}>
+          AI can make mistakes. Double-check answers.
+        </p>
       </main>
       <ToastContainer
         position="top-center"

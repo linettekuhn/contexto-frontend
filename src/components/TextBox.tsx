@@ -4,16 +4,25 @@ type Props = {
   placeholder: string;
   value: string;
   onChange?: (value: string) => void;
+  disabled?: boolean;
 };
 
-export default function TextBox({ placeholder, value, onChange }: Props) {
+export default function TextBox({
+  placeholder,
+  value,
+  onChange,
+  disabled = false,
+}: Props) {
   return (
     <div className={styles.textBoxWrapper}>
       <textarea
-        className={styles.textBox}
+        className={`${styles.textBox} ${disabled ? styles.disabled : ""}`}
         placeholder={placeholder}
+        readOnly={disabled}
         value={value}
-        onChange={onChange ? (e) => onChange(e.target.value) : undefined}
+        onChange={
+          !disabled && onChange ? (e) => onChange(e.target.value) : undefined
+        }
       />
     </div>
   );

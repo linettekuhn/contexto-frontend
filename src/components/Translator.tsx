@@ -149,6 +149,7 @@ export default function Translator() {
             value={sourceText}
             onChange={setSourceText}
             placeholder="Your original text goes here..."
+            disabled={loading}
           />
         </div>
         <div className={styles.targetWrapper}>
@@ -171,6 +172,7 @@ export default function Translator() {
           <TextBox
             value={translation}
             placeholder="Your translated text goes here......"
+            disabled={true}
           />
         </div>
       </div>

@@ -20,7 +20,13 @@
 }
 
 .textBox:focus {
-  box-shadow: 0 0 8px 0 rgba(var(--color-primary-900), 0.5),
+  box-shadow:
+    0 0 8px 0 rgba(var(--color-primary-900), 0.5),
     inset 0 0 0 2px rgb(var(--color-primary-700));
   outline: none;
+}
+
+.disabled {
+  background-color: rgb(var(--color-primary-disabled));
+  cursor: not-allowed;
 }

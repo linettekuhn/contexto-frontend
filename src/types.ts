@@ -1,5 +1,5 @@
 export type BackendError = {
-  error: string;
+  message: string;
   details?: {
     formErrors: string[];
     fieldErrors: Record<string, string[] | undefined>;

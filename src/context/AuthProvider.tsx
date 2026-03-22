@@ -30,7 +30,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     await AuthService.register(email, password);
   }, []);
 
-  const logout = useCallback(() => {
+  const logout = useCallback(async () => {
     AuthService.logout();
     setUser(null);
   }, []);

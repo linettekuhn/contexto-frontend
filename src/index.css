@@ -393,6 +393,12 @@ button {
   margin: 0;
 }
 
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 #input {
   border-top-left-radius: var(--space-xs);
   border-top-right-radius: var(--space-xs);

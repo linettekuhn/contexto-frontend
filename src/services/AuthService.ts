@@ -80,9 +80,14 @@ export async function refresh() {
   };
 }
 
-export function logout() {
+export async function logout() {
   setAccessToken(null);
-  // TODO: call backend /auth/logout
+
+  // call logout endpoint to delete refresh token from DB and clear cookie
+  await fetch(`${BASE_URL}/auth/logout`, {
+    method: "POST",
+    credentials: "include", // sends the httpOnly refresh cookie
+  });
 }
 
 export async function authFetch(input: RequestInfo, init: RequestInit = {}) {

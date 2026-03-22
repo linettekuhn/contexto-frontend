@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import styles from "./Logo.module.css";
+import styles from "../styles/Logo.module.css";
 
 const CX = 224.382;
 const CY = 89.4377;

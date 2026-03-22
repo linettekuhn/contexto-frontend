@@ -1,0 +1,17 @@
+.user {
+  height: var(--space-2xl);
+  fill: currentColor;
+  color: rgb(var(--color-text));
+  transition: transform 0.2s ease;
+  stroke: currentColor;
+}
+
+.user:hover {
+  transform-origin: center;
+  transform: scale(1.05);
+}
+
+.user.outline .head,
+.user.outline .body {
+  fill: rgba(0, 0, 0, 0);
+}

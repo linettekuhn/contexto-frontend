@@ -1,3 +1,8 @@
+.lampWrapper {
+  display: flex;
+  margin-top: -12px;
+}
+
 .lamp {
   height: var(--space-2xl);
   fill: currentColor;

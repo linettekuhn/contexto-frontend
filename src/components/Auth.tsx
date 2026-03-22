@@ -7,6 +7,7 @@ import CapsuleInput from "./CapsuleInput";
 import { MdAlternateEmail, MdPassword, MdPerson } from "react-icons/md";
 import { RiEyeFill, RiEyeCloseLine } from "react-icons/ri";
 import { AnimatePresence, motion } from "motion/react";
+import Avatar from "boring-avatars";
 
 const textVariants = {
   initial: { opacity: 0, y: 10 },
@@ -86,10 +87,49 @@ export function Auth() {
   return (
     <div className={styles.authWrapper}>
       {user ? (
-        <div>
-          <p>{user.name}</p>
-          <p>{user.email}</p>
-        </div>
+        <>
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Avatar
+                name={name}
+                variant="beam"
+                colors={["#52ffa5", "#006465", "#0f928c", "#00c9d2", "#beee3b"]}
+                size={128}
+              />
+            </motion.div>
+          </AnimatePresence>
+
+          <div className={styles.header}>
+            <AnimatePresence mode="wait">
+              <motion.h1
+                className="displayLarge"
+                variants={textVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={textTransition}
+              >
+                {user.name}
+              </motion.h1>
+            </AnimatePresence>
+            <AnimatePresence>
+              <motion.p
+                variants={textVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={textTransition}
+              >
+                {user.email}
+              </motion.p>
+            </AnimatePresence>
+          </div>
+        </>
       ) : (
         <>
           <div className={styles.header}>

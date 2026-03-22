@@ -4,6 +4,9 @@
   box-shadow: 0 0 24px 0 rgba(var(--color-primary-700), 0.5);
   border-radius: var(--space-s);
   padding: var(--space-m) var(--space-s);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header {

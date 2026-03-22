@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import type { BackendError } from "../types";
 import styles from "./styles/Auth.module.css";
 import CapsuleInput from "./CapsuleInput";
-import { MdAlternateEmail, MdPassword } from "react-icons/md";
+import { MdAlternateEmail, MdPassword, MdPerson } from "react-icons/md";
 import { RiEyeFill, RiEyeCloseLine } from "react-icons/ri";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -18,6 +18,7 @@ const textTransition = { duration: 0.2 };
 
 export function Auth() {
   const { user, isLoading, login, register, logout } = useAuth();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
@@ -52,7 +53,7 @@ export function Auth() {
   async function handleRegister() {
     try {
       setIsPending(true);
-      await register(email, password);
+      await register(name, email, password);
       toast.success("User registered!");
     } catch (error) {
       const backendError = error as BackendError;
@@ -85,7 +86,10 @@ export function Auth() {
   return (
     <div className={styles.authWrapper}>
       {user ? (
-        <p>{user.email}</p>
+        <div>
+          <p>{user.name}</p>
+          <p>{user.email}</p>
+        </div>
       ) : (
         <>
           <div className={styles.header}>
@@ -132,6 +136,25 @@ export function Auth() {
             </div>
           </div>
           <div className={styles.form}>
+            <AnimatePresence>
+              {!isLogin && (
+                <motion.div
+                  className={styles.inputWrapper}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <p className="caption">Name</p>
+                  <CapsuleInput
+                    value={name}
+                    onChange={setName}
+                    placeholder="Your name goes here..."
+                    IconComponent={MdPerson}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
             <div className={styles.inputWrapper}>
               <p className="caption">Email</p>
               <CapsuleInput

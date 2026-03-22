@@ -22,13 +22,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const login = useCallback(async (email: string, password: string) => {
-    await AuthService.login(email, password);
-    setUser({ email });
+    const { user } = await AuthService.login(email, password);
+    setUser(user);
   }, []);
 
-  const register = useCallback(async (email: string, password: string) => {
-    await AuthService.register(email, password);
-  }, []);
+  const register = useCallback(
+    async (name: string, email: string, password: string) => {
+      await AuthService.register(name, email, password);
+    },
+    [],
+  );
 
   const logout = useCallback(async () => {
     AuthService.logout();

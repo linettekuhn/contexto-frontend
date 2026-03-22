@@ -14,14 +14,14 @@ export function getAccessToken() {
   return accessToken;
 }
 
-export async function register(email: string, password: string) {
+export async function register(name: string, email: string, password: string) {
   // call register endpoint in backend
   const response = await fetch(`${BASE_URL}/auth/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ name, email, password }),
   });
 
   // parse response
@@ -55,7 +55,10 @@ export async function login(email: string, password: string) {
   }
 
   setAccessToken(result.accessToken);
-  return result;
+  return {
+    accessToken: result.accessToken as string,
+    user: result.user as AuthUser,
+  };
 }
 
 export async function refresh() {

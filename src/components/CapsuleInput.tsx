@@ -19,15 +19,23 @@ export default function CapsuleInput({
 }: Props) {
   return (
     <div className={styles.inputWrapper}>
-      {IconComponent && <IconComponent size={17} />}
-      <input
-        type={secure ? "password" : "text"}
-        className={styles.input}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder}
-        {...rest}
-      />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--space-2xs)",
+        }}
+      >
+        {IconComponent && <IconComponent size={17} />}
+        <input
+          type={secure ? "password" : "text"}
+          className={styles.input}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          {...rest}
+        />
+      </div>
       {children}
     </div>
   );

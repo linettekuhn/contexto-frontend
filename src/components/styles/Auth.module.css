@@ -1,0 +1,70 @@
+.authWrapper {
+  background-color: rgb(var(--color-primary-100));
+  border: none;
+  box-shadow: 0 0 24px 0 rgba(var(--color-primary-700), 0.5);
+  border-radius: var(--space-s);
+  padding: var(--space-m) var(--space-s);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: var(--space-m) 0;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.actionBtn {
+  width: 40%;
+}
+
+.redirect {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xl);
+}
+
+.redirectBtn {
+  color: rgb(var(--color-primary-700));
+}
+
+.redirectBtn:hover {
+  cursor: pointer;
+}
+
+.redirectBtn::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 1px;
+  border-radius: 1rem;
+  margin: 0 auto;
+  background-color: rgb(var(--color-primary-700));
+  transition: width 0.2s ease;
+}
+
+.redirectBtn:hover::after {
+  width: 100%;
+}
+
+.showPassBtn {
+  display: flex;
+  align-items: center;
+}
+
+.showPassBtn:hover {
+  cursor: pointer;
+}

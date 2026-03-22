@@ -41,6 +41,10 @@ nav * {
   gap: var(--space-m);
 }
 
+.navBar *:hover {
+  cursor: pointer;
+}
+
 @media (min-width: 650px) {
   nav {
     height: 255px;

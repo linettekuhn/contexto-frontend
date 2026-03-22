@@ -1,12 +1,15 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import styles from "../styles/Logo.module.css";
+import { useNavigate } from "react-router-dom";
 
 const CX = 224.382;
 const CY = 89.4377;
 const RY = 31;
 
 export default function Logo() {
+  const navigate = useNavigate();
+
   const m1 = useRef<SVGEllipseElement>(null);
   const m2 = useRef<SVGEllipseElement>(null);
   const m3 = useRef<SVGEllipseElement>(null);
@@ -45,6 +48,7 @@ export default function Logo() {
       viewBox="0 0 889 194"
       xmlns="http://www.w3.org/2000/svg"
       className={styles.logo}
+      onClick={() => navigate("/")}
     >
       <defs>
         <clipPath id="globeClip">

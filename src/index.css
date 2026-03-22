@@ -363,10 +363,10 @@ h1 {
 }
 
 .displayMedium {
-  font-size: var(--caption-size);
-  font-weight: var(--caption-weight);
-  line-height: var(--caption-line-height);
-  letter-spacing: var(--caption-letter-spacing);
+  font-size: var(--display-md-size);
+  font-weight: var(--display-md-weight);
+  line-height: var(--display-md-line-height);
+  letter-spacing: var(--display-md-letter-spacing);
 }
 
 button {
@@ -381,6 +381,8 @@ button {
   color: rgb(var(--color-primary-900));
   border-radius: var(--space-s);
   width: max-content;
+  display: flex;
+  justify-content: center;
 }
 
 .button:hover {

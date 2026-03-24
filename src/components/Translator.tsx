@@ -8,6 +8,7 @@ import { translateText } from "../services/TranslationService";
 import type { BackendError } from "../types";
 import Slider from "./Slider";
 import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
 
 export default function Translator() {
   const [sourceText, setSourceText] = useState("");
@@ -17,6 +18,8 @@ export default function Translator() {
   const [formality, setFormality] = useState(0);
   const [translation, setTranslation] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const sourceLanguageOptions = [
     { label: "Detect Language", value: "auto" },
@@ -106,6 +109,14 @@ export default function Translator() {
       setTranslation(result.translation);
     } catch (error) {
       const backendError = error as BackendError;
+
+      if (
+        error instanceof Error &&
+        error.message === "Unauthorized — please log in again"
+      ) {
+        navigate("/auth");
+        return;
+      }
 
       if (backendError.details) {
         const { formErrors, fieldErrors } = backendError.details;

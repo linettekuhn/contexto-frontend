@@ -76,9 +76,9 @@ export async function refresh() {
     throw result as BackendError;
   }
 
-  setAccessToken(result.newAccessToken);
+  setAccessToken(result.accessToken);
   return {
-    accessToken: result.newAccessToken as string,
+    accessToken: result.accessToken as string,
     user: result.user as AuthUser,
   };
 }
@@ -111,8 +111,8 @@ export async function authFetch(input: RequestInfo, init: RequestInit = {}) {
   if (response.status === 401) {
     try {
       // refresh token and try to do request with new token
-      const { accessToken } = await refresh();
-      response = await doRequest(accessToken);
+      const { accessToken: newToken } = await refresh();
+      response = await doRequest(newToken);
     } catch {
       logout();
       throw new Error("Unauthorized — please log in again");

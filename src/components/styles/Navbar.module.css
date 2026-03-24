@@ -24,6 +24,11 @@ nav {
   max-width: 1200px;
 }
 
+.navBar.centered {
+  justify-content: center;
+  gap: var(--space-m);
+}
+
 nav * {
   text-decoration: none;
   font-size: var(--space-m);

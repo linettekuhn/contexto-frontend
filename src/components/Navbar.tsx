@@ -3,7 +3,7 @@ import styles from "./styles/Navbar.module.css";
 import Logo from "./icons/Logo";
 import User from "./icons/User";
 import { useState } from "react";
-import { motion } from "motion/react";
+import { LayoutGroup, motion } from "motion/react";
 import type { Transition } from "motion/react";
 
 function getInitialTheme(): "dark" | "light" {
@@ -25,25 +25,29 @@ export default function Navbar({ hideUser }: Props) {
 
   return (
     <nav>
-      <div className={`${styles.navBar} ${hideUser ? styles.centered : ""}`}>
+      <LayoutGroup>
         <motion.div
-          className={styles.logo}
-          initial={{ x: hideUser ? 0 : "calc(50vw - 250px)" }}
-          animate={{ x: hideUser ? "calc(50vw - 250px)" : 0 }}
+          layout
           transition={transition}
+          className={`${styles.navBar} ${hideUser ? styles.centered : ""}`}
         >
-          <Logo />
+          <motion.div
+            layout="position"
+            transition={transition}
+            className={styles.logo}
+          >
+            <Logo />
+          </motion.div>
+          <motion.div
+            layout="position"
+            transition={transition}
+            className={styles.buttons}
+          >
+            <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
+            {!hideUser && <User darkMode={darkMode} />}
+          </motion.div>
         </motion.div>
-        <motion.div
-          className={styles.buttons}
-          initial={{ x: hideUser ? 0 : "calc(-50vw + 250px)" }}
-          animate={{ x: hideUser ? "calc(-50vw + 250px)" : 0 }}
-          transition={transition}
-        >
-          <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
-          {!hideUser && <User darkMode={darkMode} />}
-        </motion.div>
-      </div>
+      </LayoutGroup>
     </nav>
   );
 }

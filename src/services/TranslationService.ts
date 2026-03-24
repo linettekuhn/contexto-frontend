@@ -1,7 +1,8 @@
 import type { BackendError } from "../types";
+import { authFetch } from "./AuthService";
 
 //TODO: change back to vite env
-const BASE_URL = "http://localhost:3009/";
+const BASE_URL = "http://localhost:3009";
 
 export type TranslateRequest = {
   original_text: string;
@@ -25,10 +26,8 @@ export type TranslateResponse = {
 export async function translateText(
   data: TranslateRequest,
 ): Promise<TranslateResponse> {
-  console.log(data);
-
   // call translate endpoint in backend
-  const response = await fetch(BASE_URL, {
+  const response = await authFetch(`${BASE_URL}/translate`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -44,6 +43,5 @@ export async function translateText(
     throw result as BackendError;
   }
 
-  console.log(result);
   return result;
 }

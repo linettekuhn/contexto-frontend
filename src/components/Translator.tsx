@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./styles/Translator.module.css";
 import TextBox from "./TextBox";
 import TextBoxHeader from "./TextBoxHeader";
@@ -9,6 +9,11 @@ import type { BackendError } from "../types";
 import Slider from "./Slider";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
+import {
+  SOURCE_LANGUAGE_OPTIONS,
+  TARGET_LANGUAGE_OPTIONS,
+  DIALECT_MAP,
+} from "../constants/languages";
 
 export default function Translator() {
   const [sourceText, setSourceText] = useState("");
@@ -21,77 +26,17 @@ export default function Translator() {
 
   const navigate = useNavigate();
 
-  const sourceLanguageOptions = [
-    { label: "Detect Language", value: "auto" },
-    { label: "English", value: "en" },
-    { label: "Spanish", value: "es" },
-    { label: "French", value: "fr" },
-    { label: "Portuguese", value: "pt" },
-    { label: "German", value: "de" },
-    { label: "Italian", value: "it" },
-  ];
-
-  const targetLanguageOptions = [
-    { label: "English", value: "en" },
-    { label: "Spanish", value: "es" },
-    { label: "French", value: "fr" },
-    { label: "Portuguese", value: "pt" },
-    { label: "German", value: "de" },
-    { label: "Italian", value: "it" },
-  ];
-
-  const dialectMap: Record<string, { label: string; value: string }[]> =
-    useMemo(
-      () => ({
-        es: [
-          { label: "Neutral", value: "neutral" },
-          { label: "Dominican", value: "dominican" },
-          { label: "Mexican", value: "mexican" },
-          { label: "Colombian", value: "colombian" },
-          { label: "Argentinian", value: "argentinian" },
-          { label: "Castilian (Spain)", value: "castilian" },
-        ],
-        en: [
-          { label: "Neutral", value: "neutral" },
-          { label: "American", value: "american" },
-          { label: "British", value: "british" },
-          { label: "Australian", value: "australian" },
-        ],
-        fr: [
-          { label: "Neutral", value: "neutral" },
-          { label: "France", value: "france" },
-          { label: "Canadian (Quebec)", value: "quebecois" },
-        ],
-        pt: [
-          { label: "Neutral", value: "neutral" },
-          { label: "Brazilian", value: "brazilian" },
-          { label: "European", value: "european" },
-        ],
-        de: [
-          { label: "Neutral", value: "neutral" },
-          { label: "Germany", value: "germany" },
-          { label: "Swiss", value: "swiss" },
-        ],
-        it: [
-          { label: "Neutral", value: "neutral" },
-          { label: "Standard Italian", value: "standard" },
-          { label: "Southern", value: "southern" },
-        ],
-      }),
-      [],
-    );
-
-  const targetDialectOptions = dialectMap[targetLanguage] || [
+  const targetDialectOptions = DIALECT_MAP[targetLanguage] ?? [
     { label: "Neutral", value: "neutral" },
   ];
 
   useEffect(() => {
-    const dialects = dialectMap[targetLanguage];
+    const dialects = DIALECT_MAP[targetLanguage];
 
     if (dialects) {
       setTargetDialect(dialects[0].value);
     }
-  }, [targetLanguage, dialectMap]);
+  }, [targetLanguage]);
 
   const handleTranslate = async () => {
     try {
@@ -163,7 +108,7 @@ export default function Translator() {
               <Dropdown
                 value={sourceLanguage}
                 onChange={setSourceLanguage}
-                options={sourceLanguageOptions}
+                options={SOURCE_LANGUAGE_OPTIONS}
               />
             </div>
           </TextBoxHeader>
@@ -181,7 +126,7 @@ export default function Translator() {
               <Dropdown
                 value={targetLanguage}
                 onChange={setTargetLanguage}
-                options={targetLanguageOptions}
+                options={TARGET_LANGUAGE_OPTIONS}
               />
               <Dropdown
                 value={targetDialect}

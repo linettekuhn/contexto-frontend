@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import HistoryButton from "./components/HistoryButton";
+import HistoryButton from "./components/History";
 import Translator from "./components/Translator";
 
 function App() {
@@ -11,11 +11,11 @@ function App() {
           Instant translations adapted to real dialects and everyday speech.
         </h4>
       </div>
-      <HistoryButton />
       <Translator />
       <p className="caption" style={{ opacity: 0.5 }}>
         AI can make mistakes. Double-check answers.
       </p>
+      <HistoryButton />
     </main>
   );
 }

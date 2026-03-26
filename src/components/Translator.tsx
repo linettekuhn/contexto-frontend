@@ -117,6 +117,7 @@ export default function Translator() {
             onChange={setSourceText}
             placeholder="Your original text goes here..."
             disabled={loading}
+            showCount
           />
         </div>
         <div className={styles.targetWrapper}>

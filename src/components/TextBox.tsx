@@ -9,6 +9,7 @@ type Props = {
   onChange?: (value: string) => void;
   disabled?: boolean;
   copyable?: boolean;
+  showCount?: boolean;
 };
 
 export default function TextBox({
@@ -17,6 +18,7 @@ export default function TextBox({
   onChange,
   disabled = false,
   copyable = false,
+  showCount = false,
 }: Props) {
   const [copied, setCopied] = useState(false);
 
@@ -27,15 +29,31 @@ export default function TextBox({
   };
   return (
     <div className={styles.textBoxWrapper}>
-      <textarea
-        className={`${styles.textBox} ${disabled ? styles.disabled : ""}`}
-        placeholder={placeholder}
-        readOnly={disabled}
-        value={value}
-        onChange={
-          !disabled && onChange ? (e) => onChange(e.target.value) : undefined
-        }
-      />
+      <div
+        className={`${styles.textBoxInner} ${disabled ? styles.disabled : ""}`}
+      >
+        <textarea
+          className={styles.textBox}
+          placeholder={placeholder}
+          readOnly={disabled}
+          value={value}
+          onChange={
+            !disabled && onChange ? (e) => onChange(e.target.value) : undefined
+          }
+        />
+        {(showCount || copyable) && <div className={styles.textBoxFooter} />}
+      </div>
+      {showCount && (
+        <p
+          style={{
+            color:
+              value.length > 1500 ? "red" : "rgb(var(--color-primary-700))",
+          }}
+          className={styles.charCount}
+        >
+          {value.length} / 1500
+        </p>
+      )}
       {copyable && (
         <button
           className={`${styles.copyButton} ${copied ? styles.copied : ""}`}

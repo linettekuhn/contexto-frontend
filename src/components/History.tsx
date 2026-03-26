@@ -8,8 +8,15 @@ import styles from "./styles/History.module.css";
 import { FaRepeat } from "react-icons/fa6";
 import TextBoxHeader from "./TextBoxHeader";
 import { useQuery } from "@tanstack/react-query";
+import { AnimatePresence, motion } from "motion/react";
 
-function HistoryListItem({ item }: { item: HistoryItem }) {
+function HistoryListItem({
+  item,
+  index,
+}: {
+  item: HistoryItem;
+  index: number;
+}) {
   const [expanded, setExpanded] = useState(false);
   const [needsExpand, setNeedsExpand] = useState(false);
 
@@ -34,7 +41,16 @@ function HistoryListItem({ item }: { item: HistoryItem }) {
   const dialectLabel = getDialectLabel(item.target_language, item.dialect);
 
   return (
-    <div className={styles.historyItem}>
+    <motion.div
+      className={styles.historyItem}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.3,
+        delay: index * 0.06,
+        ease: "easeOut",
+      }}
+    >
       <div className={styles.headers}>
         <TextBoxHeader headerType="input">
           <div className="caption">FROM {sourceLabel}</div>
@@ -46,12 +62,15 @@ function HistoryListItem({ item }: { item: HistoryItem }) {
         </TextBoxHeader>
       </div>
       {needsExpand && (
-        <button
+        <motion.button
           className={styles.expandButton}
           onClick={() => setExpanded((e) => !e)}
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
         >
           {expanded ? "See preview" : "See full translation"}
-        </button>
+        </motion.button>
       )}
       <div className={styles.textsRow}>
         <div className={styles.textWrapper}>
@@ -74,7 +93,7 @@ function HistoryListItem({ item }: { item: HistoryItem }) {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -97,7 +116,13 @@ export default function HistoryButton() {
 
   return (
     <>
-      <button className="button" onClick={handleToggle}>
+      <motion.button
+        className="button"
+        onClick={handleToggle}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      >
         {visible ? (
           <>
             <TbChevronUp /> Hide history
@@ -107,14 +132,22 @@ export default function HistoryButton() {
             <TbHistory /> View history
           </>
         )}
-      </button>
-      {!isLoading && visible && history && (
-        <div className={styles.historyList}>
-          {history.map((item) => (
-            <HistoryListItem key={item.id} item={item} />
-          ))}
-        </div>
-      )}
+      </motion.button>
+      <AnimatePresence>
+        {!isLoading && visible && history && (
+          <motion.div
+            className={styles.historyList}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {history.map((item, index) => (
+              <HistoryListItem key={item.id} item={item} index={index} />
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

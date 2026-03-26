@@ -4,12 +4,12 @@
   min-height: 1000px;
   width: 100%;
   max-width: 700px;
+  gap: var(--space-l);
 }
 
 .historyItem {
   display: flex;
   flex-direction: column;
-  margin-top: var(--space-4xl);
   box-shadow: 0 0 8px 0 rgba(var(--color-primary-700), 0.5);
   border-radius: var(--space-xs) var(--space-xs) var(--space-2xs)
     var(--space-2xs);

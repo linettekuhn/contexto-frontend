@@ -83,7 +83,6 @@ export function Auth() {
 
   if (isLoading) return <div>Loading...</div>;
 
-  // TODO: logout
   return (
     <div className={styles.authWrapper}>
       {user ? (

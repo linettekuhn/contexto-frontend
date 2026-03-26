@@ -353,6 +353,7 @@ h1 {
   line-height: var(--caption-line-height);
   letter-spacing: var(--caption-letter-spacing);
   text-transform: uppercase;
+  text-align: center;
 }
 
 .displayLarge {

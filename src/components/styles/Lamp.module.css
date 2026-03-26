@@ -1,6 +1,6 @@
 .lampWrapper {
   display: flex;
-  margin-top: -12px;
+  padding-bottom: calc(var(--space-2xl) * (11.5 / 37.05));
 }
 
 .lamp {

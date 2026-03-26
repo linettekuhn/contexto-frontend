@@ -41,7 +41,7 @@ function HistoryListItem({ item }: { item: HistoryItem }) {
         </TextBoxHeader>
         <TextBoxHeader headerType="output">
           <div className="caption">
-            TO {targetLabel} · {dialectLabel}
+            TO {dialectLabel} {targetLabel}
           </div>
         </TextBoxHeader>
       </div>

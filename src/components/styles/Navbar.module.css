@@ -7,6 +7,7 @@ nav {
   justify-content: center;
   align-items: start;
   z-index: 2;
+  pointer-events: none;
 }
 
 .navBar {
@@ -22,6 +23,7 @@ nav {
   padding: var(--space-s) var(--space-4xl);
   background-color: rgb(var(--color-primary-300));
   max-width: 1200px;
+  pointer-events: all;
 }
 
 .navBar.centered {

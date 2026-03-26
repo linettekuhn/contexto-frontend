@@ -14,6 +14,7 @@ import {
   TARGET_LANGUAGE_OPTIONS,
   DIALECT_MAP,
 } from "../constants/languages";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function Translator() {
   const [sourceText, setSourceText] = useState("");
@@ -24,6 +25,7 @@ export default function Translator() {
   const [translation, setTranslation] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const targetDialectOptions = DIALECT_MAP[targetLanguage] ?? [
@@ -52,6 +54,7 @@ export default function Translator() {
       });
 
       setTranslation(result.translation);
+      queryClient.invalidateQueries({ queryKey: ["history"] });
     } catch (error) {
       const backendError = error as BackendError;
 

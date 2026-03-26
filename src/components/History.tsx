@@ -2,12 +2,12 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { getHistory } from "../services/HistoryService";
 import type { HistoryItem } from "../types";
-import { TbHistory } from "react-icons/tb";
-import { useNavigate } from "react-router-dom";
+import { TbChevronUp, TbHistory } from "react-icons/tb";
 import { getDialectLabel, getLanguageLabel } from "../constants/languages";
 import styles from "./styles/History.module.css";
 import { FaRepeat } from "react-icons/fa6";
 import TextBoxHeader from "./TextBoxHeader";
+import { useQuery } from "@tanstack/react-query";
 
 function HistoryListItem({ item }: { item: HistoryItem }) {
   const [expanded, setExpanded] = useState(false);
@@ -80,32 +80,38 @@ function HistoryListItem({ item }: { item: HistoryItem }) {
 
 export default function HistoryButton() {
   const { user } = useAuth();
-  const [history, setHistory] = useState<HistoryItem[]>([]);
+  const [visible, setVisible] = useState(false);
 
-  const navigate = useNavigate();
+  const { data: history, isLoading } = useQuery({
+    queryKey: ["history"],
+    queryFn: getHistory,
+    enabled: visible, // only fetch when history list is visible
+    staleTime: 10000 * 60 * 5, // cache for 5 min
+  });
+
+  const handleToggle = async () => {
+    setVisible((prev) => !prev);
+  };
 
   if (!user) return null;
 
-  const handleHistory = async () => {
-    try {
-      setHistory(await getHistory());
-      console.log(history);
-    } catch (error) {
-      console.error(error);
-      navigate("/auth");
-      return;
-    }
-  };
-
   return (
     <>
-      <button className="button" onClick={handleHistory}>
-        <TbHistory /> View translation history
+      <button className="button" onClick={handleToggle}>
+        {visible ? (
+          <>
+            <TbChevronUp /> Hide history
+          </>
+        ) : (
+          <>
+            <TbHistory /> View history
+          </>
+        )}
       </button>
-      {history && (
+      {!isLoading && visible && history && (
         <div className={styles.historyList}>
           {history.map((item) => (
-            <HistoryListItem item={item} />
+            <HistoryListItem key={item.id} item={item} />
           ))}
         </div>
       )}

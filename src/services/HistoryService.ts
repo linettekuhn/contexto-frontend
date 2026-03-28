@@ -1,7 +1,7 @@
 import type { BackendError, HistoryItem } from "../types";
 import { authFetch } from "./AuthService";
 
-const BASE_URL = "http://localhost:3009";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export async function getHistory(): Promise<HistoryItem[]> {
   // call history endpoint in backend

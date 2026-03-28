@@ -116,23 +116,25 @@ export default function HistoryButton() {
 
   return (
     <>
-      <motion.button
-        className="button"
-        onClick={handleToggle}
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.97 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      >
-        {visible ? (
-          <>
-            <TbChevronUp /> Hide history
-          </>
-        ) : (
-          <>
-            <TbHistory /> View history
-          </>
-        )}
-      </motion.button>
+      {history && history.length > 0 && (
+        <motion.button
+          className="button"
+          onClick={handleToggle}
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        >
+          {visible ? (
+            <>
+              <TbChevronUp /> Hide history
+            </>
+          ) : (
+            <>
+              <TbHistory /> View history
+            </>
+          )}
+        </motion.button>
+      )}
       <AnimatePresence>
         {!isLoading && visible && history && (
           <motion.div

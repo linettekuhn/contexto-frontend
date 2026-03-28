@@ -55,7 +55,8 @@ export function Auth() {
     try {
       setIsPending(true);
       await register(name, email, password);
-      toast.success("User registered!");
+      await login(email, password);
+      toast.success("Welcome!");
     } catch (error) {
       const backendError = error as BackendError;
       toast.error(backendError.message);
@@ -95,7 +96,7 @@ export function Auth() {
               transition={{ duration: 0.3 }}
             >
               <Avatar
-                name={name}
+                name={user.name}
                 variant="beam"
                 colors={["#52ffa5", "#006465", "#0f928c", "#00c9d2", "#beee3b"]}
                 size={128}

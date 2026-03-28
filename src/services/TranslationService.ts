@@ -1,8 +1,7 @@
 import type { BackendError } from "../types";
 import { authFetch } from "./AuthService";
 
-//TODO: change back to vite env
-const BASE_URL = "http://localhost:3009";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export type TranslateRequest = {
   original_text: string;

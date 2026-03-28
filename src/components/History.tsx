@@ -104,37 +104,39 @@ export default function HistoryButton() {
   const { data: history, isLoading } = useQuery({
     queryKey: ["history"],
     queryFn: getHistory,
-    enabled: visible, // only fetch when history list is visible
+    enabled: !!user, // fetch as soon as user is logged in
     staleTime: 10000 * 60 * 5, // cache for 5 min
   });
 
   const handleToggle = async () => {
     setVisible((prev) => !prev);
+    console.log(history);
+    console.log(history?.length);
   };
 
   if (!user) return null;
+  if (!history || history.length === 0) return null;
 
   return (
     <>
-      {history && history.length > 0 && (
-        <motion.button
-          className="button"
-          onClick={handleToggle}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        >
-          {visible ? (
-            <>
-              <TbChevronUp /> Hide history
-            </>
-          ) : (
-            <>
-              <TbHistory /> View history
-            </>
-          )}
-        </motion.button>
-      )}
+      <motion.button
+        className="button"
+        onClick={handleToggle}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      >
+        {visible ? (
+          <>
+            <TbChevronUp /> Hide history
+          </>
+        ) : (
+          <>
+            <TbHistory /> View history
+          </>
+        )}
+      </motion.button>
+
       <AnimatePresence>
         {!isLoading && visible && history && (
           <motion.div

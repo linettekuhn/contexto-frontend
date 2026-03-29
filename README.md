@@ -7,8 +7,7 @@ It allows users to translate text into authentic regional dialects using AI, wit
 ---
 
 ## Demo and Visuals
-
-[👉 **Click here to see live demo**](https://contexto.linettekuhn.com)
+[👉 **Click here to see live demo**](https://speakcontexto.com)
 
 <div style="display: flex; align-items: center;">
   <img 
@@ -24,7 +23,6 @@ It allows users to translate text into authentic regional dialects using AI, wit
 ---
 
 ## Features
-
 - Translate text into authentic regional dialects using AI
 - Language and dialect selection
 - Automatic or manual original language detection
@@ -33,16 +31,17 @@ It allows users to translate text into authentic regional dialects using AI, wit
 - Toast notifications for user feedback
 - Dark and light theme toggle
 - Fully responsive design for desktop and mobile viewing
+- Register and log in to save your work across sessions
+- View and revisit past translations when signed in
+- Animated auth flow with dedicated auth page and modal UI
+- Updated navbar with user account controls and session state awareness
 
 ---
 
 ## Built With
-
 - Frontend: React, TypeScript, Vite
 - Animations: Framer Motion, GSAP
 - Backend [managed in sister repository](https://github.com/linettekuhn/contexto-backend): Node.js, Express, TypeScript
 - Deployment: DigitalOcean VPS
 - Database: PostgreSQL
 - APIs: OpenAI API
-
----

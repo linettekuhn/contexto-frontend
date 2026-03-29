@@ -24,6 +24,8 @@ export default function CapsuleInput({
           display: "flex",
           alignItems: "center",
           gap: "var(--space-2xs)",
+          flex: 1,
+          minWidth: 0,
         }}
       >
         {IconComponent && <IconComponent size={17} />}
